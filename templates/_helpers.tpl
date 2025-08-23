@@ -1,7 +1,17 @@
+{{/*
+Expand the name of the chart.
+*/}}
 {{- define "n8n.name" -}}
-n8n
+{{ .Chart.Name }}
 {{- end }}
 
+{{/*
+Create a default fully qualified app name.
+*/}}
 {{- define "n8n.fullname" -}}
-{{ include "n8n.name" . }}
+{{- if .Values.fullnameOverride }}
+{{ .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+{{- else }}
+{{- printf "%s" (include "n8n.name" .) | trunc 63 | trimSuffix "-" }}
+{{- end }}
 {{- end }}
