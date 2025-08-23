@@ -1,0 +1,35 @@
+replicaCount: 1
+
+image:
+  repository: n8nio/n8n
+  tag: latest
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 5678
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: n8n.tarchunk.win
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: n8n-tls
+      hosts:
+        - n8n.tarchunk.win
+
+persistence:
+  enabled: true
+  storageClassName: ""   # ใส่ storage class ที่ cluster คุณมี เช่น "local-path" หรือ "longhorn"
+  accessModes:
+    - ReadWriteOnce
+  size: 5Gi
+  existingClaim: ""      # ถ้ามี PVC อยู่แล้วใส่ชื่อ claim ได้เลย
+
+resources: {}
