@@ -9,6 +9,10 @@ metadata:
     {{- end }}
 spec:
   ingressClassName: {{ .Values.ingress.className }}
+  ports:
+    - name: {{ .Values.ingress.spec.ports.name}}
+      port: {{ .Values.ingress.spec.ports.port}}
+      targetPort:  {{ .Values.ingress.spec.ports.targetPort}}
   tls:
     {{- range .Values.ingress.tls }}
     - hosts:

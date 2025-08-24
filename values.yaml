@@ -6,6 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
+
   type: NodePort
   port: 5678
 
@@ -16,6 +17,11 @@ ingress:
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  spec:
+    ports:
+      - name: htpp-2000
+        port: 2000
+        targetPort: http
   hosts:
     - host: n8n.tarchunk.win
       paths:
