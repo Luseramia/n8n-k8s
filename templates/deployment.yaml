@@ -16,8 +16,6 @@ spec:
         - name: n8n
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: ["node"]
-          args: ["packages/cli/dist/index.js", "start"]
           ports:
             - containerPort: 5678
           env:
