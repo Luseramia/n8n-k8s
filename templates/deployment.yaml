@@ -16,6 +16,7 @@ spec:
         - name: n8n
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: ["start"]
           ports:
             - containerPort: 5678
           env:
