@@ -10,6 +10,9 @@ service:
   type: NodePort
   port: 5678
 
+n8n:
+  encryptionKey: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
+
 ingress:
   enabled: true
   className: nginx
@@ -29,7 +32,7 @@ ingress:
 
 persistence:
   enabled: true
-  storageClassName: ""   # ใส่ storage class ที่ cluster คุณมี เช่น "local-path" หรือ "longhorn"
+  storageClassName: "hostpath-storage"   # ใส่ storage class ที่ cluster คุณมี เช่น "local-path" หรือ "longhorn"
   accessModes:
     - ReadWriteOnce
   size: 5Gi

@@ -25,6 +25,8 @@ spec:
               value: "{{ (index .Values.ingress.hosts 0).host }}"
             - name: WEBHOOK_URL
               value: "https://{{ (index .Values.ingress.hosts 0).host }}/"
+            - name: N8N_ENCRYPTION_KEY
+              value: "{{ .Values.n8n.encryptionKey }}"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
