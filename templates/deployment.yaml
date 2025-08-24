@@ -23,7 +23,8 @@ spec:
             - name: N8N_PORT
               value: "5678"
             - name: N8N_HOST
-              value: "{{ (index .Values.ingress.hosts 0).host }}"
+              value: "0.0.0.0"
+              # value: "{{ (index .Values.ingress.hosts 0).host }}"
             - name: WEBHOOK_URL
               value: "https://{{ (index .Values.ingress.hosts 0).host }}/"
             - name: N8N_ENCRYPTION_KEY
