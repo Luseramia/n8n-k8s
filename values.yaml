@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: n8nio/n8n
-  tag: latest
+  tag: nightly
   pullPolicy: IfNotPresent
 
 service:
