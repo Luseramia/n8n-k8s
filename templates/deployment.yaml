@@ -28,9 +28,14 @@ spec:
               value: "https://{{ (index .Values.ingress.hosts 0).host }}/"
             - name: N8N_ENCRYPTION_KEY
               value: "{{ .Values.n8n.encryptionKey }}"
+            - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+              value: "false"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
       volumes:
         - name: n8n-data
           persistentVolumeClaim:
