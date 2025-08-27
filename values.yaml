@@ -29,7 +29,7 @@ ingress:
         - path: /
           pathType: Prefix
   tls:
-    - secretName: n8n-tls
+    - secretName: n8n-tarchunk-win-tls
       hosts:
         - n8n.tarchunk.win
 
