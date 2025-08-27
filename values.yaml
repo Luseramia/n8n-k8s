@@ -33,6 +33,7 @@ ingress:
       hosts:
         - n8n.tarchunk.win
 
+
 persistence:
   enabled: true
   storageClassName: "hostpath-storage"   # ใส่ storage class ที่ cluster คุณมี เช่น "local-path" หรือ "longhorn"
