@@ -8,7 +8,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: hostpath-storage
+  storageClassName: ""
   hostPath:
     path: "/data/n8n"   # path จริงบน node (คุณต้องสร้างโฟลเดอร์นี้เองด้วย)
     type: DirectoryOrCreate
