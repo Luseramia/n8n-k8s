@@ -7,7 +7,7 @@ image:
 
 service:
 
-  type: ClusterIP
+  type: LoadBalancer
   port: 5678
 
 n8n:
@@ -21,8 +21,8 @@ ingress:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/proxy-ssl-verify: "false"
-    acme.cert-manager.io/http01-ingress-class: "nginx"
-    cert-manager.io/cluster-issuer: "letsencrypt-dns01"
+    # acme.cert-manager.io/http01-ingress-class: "nginx"
+    # cert-manager.io/cluster-issuer: "letsencrypt-dns01"
   hosts:
     - host: n8n.tarchunk.win
       paths:
@@ -35,10 +35,9 @@ ingress:
 
 persistence:
   enabled: true
-  storageClassName: "hostpath-storage"   # ใส่ storage class ที่ cluster คุณมี เช่น "local-path" หรือ "longhorn"
+  storageClassName: "truenas-nfs-storage"   # ใส่ storage class ที่ cluster คุณมี เช่น "local-path" หรือ "longhorn"
   accessModes:
     - ReadWriteOnce
   size: 5Gi
-  existingClaim: ""      # ถ้ามี PVC อยู่แล้วใส่ชื่อ claim ได้เลย
 
 resources: {}

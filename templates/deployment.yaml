@@ -23,14 +23,16 @@ spec:
             - name: N8N_PORT
               value: "5678"
             - name: N8N_HOST
-              value: "0.0.0.0"
-              # value: "{{ (index .Values.ingress.hosts 0).host }}"
+              # value: "0.0.0.0"
+              value: "{{ (index .Values.ingress.hosts 0).host }}"
             - name: WEBHOOK_URL
               value: "https://{{ (index .Values.ingress.hosts 0).host }}/"
             - name: N8N_ENCRYPTION_KEY
               value: "{{ .Values.n8n.encryptionKey }}"
             - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
               value: "false"
+            - name: N8N_PROTOCOL
+              value: "https"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
