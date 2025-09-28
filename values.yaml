@@ -6,9 +6,8 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-
   type: LoadBalancer
-  port: 5678
+  port: 80
 
 n8n:
   encryptionKey: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
@@ -17,12 +16,8 @@ ingress:
   enabled: true
   className: nginx
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    nginx.ingress.kubernetes.io/proxy-ssl-verify: "false"
-    # acme.cert-manager.io/http01-ingress-class: "nginx"
-    # cert-manager.io/cluster-issuer: "letsencrypt-dns01"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
   hosts:
     - host: n8n.tarchunk.win
       paths:
