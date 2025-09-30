@@ -18,6 +18,8 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
     nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    acme.cert-manager.io/http01-ingress-class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-dns01"
   hosts:
     - host: n8n.tarchunk.win
       paths:
@@ -27,6 +29,7 @@ ingress:
     - secretName: n8n-tls
       hosts:
         - n8n.tarchunk.win
+        
 
 persistence:
   enabled: true
