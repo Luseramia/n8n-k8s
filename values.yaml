@@ -13,7 +13,7 @@ n8n:
   encryptionKey: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
 
 ingress:
-  enabled: false
+  enabled: true
   className: nginx
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
