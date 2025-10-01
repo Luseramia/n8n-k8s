@@ -31,8 +31,20 @@ spec:
               value: "{{ .Values.n8n.encryptionKey }}"
             - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
               value: "false"
+            - name: DB_TYPE
+              value: "postgresdb"
             - name: N8N_PROTOCOL
               value: "https"
+            - name: DB_POSTGRESDB_HOST
+              value: "192.168.1.44"
+            - name: DB_POSTGRESDB_PORT
+              value: "5432"
+            - name: DB_POSTGRESDB_DATABASE
+              value: "n8n_db"
+            - name: DB_POSTGRESDB_USER
+              value: "n8n"
+            - name: DB_POSTGRESDB_PASSWORD
+              value: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
