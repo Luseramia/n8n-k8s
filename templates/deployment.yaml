@@ -3,6 +3,13 @@ kind: Deployment
 metadata:
   name: {{ include "n8n.fullname" . }}
 spec:
+  topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: ScheduleAnyway
+        labelSelector:
+          matchLabels:
+            app: n8n
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
