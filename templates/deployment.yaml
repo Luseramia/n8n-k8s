@@ -52,6 +52,8 @@ spec:
               value: "n8n"
             - name: DB_POSTGRESDB_PASSWORD
               value: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
+            - name:  N8N_PAYLOAD_SIZE_MAX
+              value: "100"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
