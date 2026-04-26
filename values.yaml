@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: registry.registry.svc.cluster.local:5000/n8n-ccxt
-  tag: 4
+  tag: 5
   pullPolicy: IfNotPresent
 
 service:
