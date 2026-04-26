@@ -77,6 +77,14 @@ spec:
               value: "my-super-secret-token"
             - name: N8N_RUNNERS_TASK_BROKER_URI
               value: "http://127.0.0.1:5679"
+          volumeMounts:
+            - name: runner-config
+              mountPath: /etc/n8n-task-runners.json
+              subPath: n8n-task-runners.json
+          volumes:
+            - name: runner-config
+              configMap:
+                name: n8n-runner-config
           securityContext:
             runAsUser: 0
       volumes:
