@@ -70,7 +70,7 @@ spec:
             runAsGroup: 1000
             fsGroup: 1000 
         - name: n8n-runner
-          image: "registry.registry.svc.cluster.local:5000/n8n-runner:12"
+          image: "registry.registry.svc.cluster.local:5000/n8n-runner:14"
           imagePullPolicy: IfNotPresent
           env:
             - name: N8N_RUNNERS_AUTH_TOKEN
