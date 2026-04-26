@@ -56,6 +56,8 @@ spec:
               value: "100"
             - name: NODE_FUNCTION_ALLOW_EXTERNAL
               value: "ccxt"
+            - name: NODE_PATH
+              value: "/usr/local/lib/node_modules"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
