@@ -71,6 +71,7 @@ spec:
             fsGroup: 1000 
         - name: n8n-runner
           image: "registry.registry.svc.cluster.local:5000/n8n-runner:31"
+          command: ["sleep", "3600"]    
           imagePullPolicy: IfNotPresent
           env:
             - name: N8N_RUNNERS_AUTH_TOKEN
