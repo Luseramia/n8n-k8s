@@ -58,6 +58,10 @@ spec:
               value: "ccxt"
             - name: NODE_PATH
               value: "/usr/local/lib/node_modules"
+            - name: N8N_RUNNERS_ENABLED
+              value: "true"
+            - name: N8N_RUNNERS_MODE
+              value: "external"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
