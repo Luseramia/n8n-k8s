@@ -1,22 +1,17 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: n8n-runner-config
-data:
-  n8n-task-runners.json: |
+n8n-task-runners.json: |
     {
       "task-runners": [
         {
           "runner-type": "javascript",
-          "working-directory": "/tmp",
-                   "health-check-server-port": "5580",
+          "workingDirectory": "/tmp",
+          "health-check-server-port": "5580",
           "env-overrides": {
             "NODE_FUNCTION_ALLOW_EXTERNAL": "ccxt"
           }
         },
         {
           "runner-type": "python",
-          "working-directory": "/tmp",
+          "workingDirectory": "/tmp",
           "health-check-server-port": "5681",
           "env-overrides": {
             "PYTHONPATH": "/opt/runners/task-runner-python"
