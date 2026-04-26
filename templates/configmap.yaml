@@ -1,4 +1,9 @@
-n8n-task-runners.json: |
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: n8n-runner-config
+data:
+  n8n-task-runners.json: |
     {
       "task-runners": [
         {
