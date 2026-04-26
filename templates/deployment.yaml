@@ -54,16 +54,6 @@ spec:
               value: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
             - name:  N8N_PAYLOAD_SIZE_MAX
               value: "100"
-            - name: NODE_FUNCTION_ALLOW_EXTERNAL
-              value: "ccxt"
-            - name: NODE_PATH
-              value: "/usr/local/lib/node_modules"
-            - name: N8N_RUNNERS_ENABLED
-              value: "true"
-            - name: N8N_RUNNERS_MODE
-              value: "external"
-            - name: N8N_RUNNERS_AUTH_TOKEN
-              value: "my-super-secret-token"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
