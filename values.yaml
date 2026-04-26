@@ -1,8 +1,8 @@
 replicaCount: 1
 
 image:
-  repository: n8nio/n8n
-  tag: nightly
+  repository: registry.registry.svc.cluster.local:5000/n8n-ccxt
+  tag: 1
   pullPolicy: IfNotPresent
 
 service:
