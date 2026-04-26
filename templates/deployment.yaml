@@ -54,6 +54,14 @@ spec:
               value: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
             - name:  N8N_PAYLOAD_SIZE_MAX
               value: "100"
+            - name: N8N_RUNNERS_ENABLED
+              value: "true"
+            - name: N8N_RUNNERS_MODE
+              value: "external"
+            - name: N8N_RUNNERS_AUTH_TOKEN
+              value: "my-super-secret-token"
+            - name: N8N_RUNNERS_BROKER_LISTEN_ADDRESS
+              value: "0.0.0.0"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
@@ -61,6 +69,14 @@ spec:
             runAsUser: 1000
             runAsGroup: 1000
             fsGroup: 1000 
+        - name: n8n-runner
+          image: "registry.registry.svc.cluster.local:5000/n8n-runner:latest"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: N8N_RUNNERS_AUTH_TOKEN
+              value: "my-super-secret-token"
+            - name: N8N_RUNNERS_TASK_BROKER_URI
+              value: "http://127.0.0.1:5679"
       volumes:
         - name: n8n-data
           persistentVolumeClaim:
