@@ -62,6 +62,8 @@ spec:
               value: "my-super-secret-token"
             - name: N8N_RUNNERS_BROKER_LISTEN_ADDRESS
               value: "0.0.0.0"
+            - name: N8N_NATIVE_PYTHON_RUNNER
+              value: "false"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
