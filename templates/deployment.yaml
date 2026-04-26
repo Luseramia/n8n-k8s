@@ -62,8 +62,6 @@ spec:
               value: "my-super-secret-token"
             - name: N8N_RUNNERS_BROKER_LISTEN_ADDRESS
               value: "0.0.0.0"
-            - name: N8N_NATIVE_PYTHON_RUNNER
-              value: "false"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
@@ -72,7 +70,7 @@ spec:
             runAsGroup: 1000
             fsGroup: 1000 
         - name: n8n-runner
-          image: "registry.registry.svc.cluster.local:5000/n8n-runner:23"
+          image: "registry.registry.svc.cluster.local:5000/n8n-runner:24"
           imagePullPolicy: IfNotPresent
           env:
             - name: N8N_RUNNERS_AUTH_TOKEN
