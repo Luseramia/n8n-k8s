@@ -81,13 +81,12 @@ spec:
             - name: runner-config
               mountPath: /etc/n8n-task-runners.json
               subPath: n8n-task-runners.json
-          volumes:
-            - name: runner-config
-              configMap:
-                name: n8n-runner-config
           securityContext:
             runAsUser: 0
       volumes:
         - name: n8n-data
           persistentVolumeClaim:
             claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{ else }}{{ include "n8n.fullname" . }}{{ end }}
+        - name: runner-config
+          configMap:
+            name: n8n-runner-config
