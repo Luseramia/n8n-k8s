@@ -78,6 +78,10 @@ spec:
               value: "my-super-secret-token"
             - name: N8N_RUNNERS_TASK_BROKER_URI
               value: "http://127.0.0.1:5679"
+            - name: N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT
+              value: "15"
+            - name: N8N_RUNNERS_TASK_TIMEOUT
+              value: "300"
           volumeMounts:
             - name: runner-config
               mountPath: /etc/n8n-task-runners.json
