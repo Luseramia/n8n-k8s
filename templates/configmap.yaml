@@ -9,8 +9,12 @@ data:
         {
           "runner-type": "javascript",
           "workdir": "/home/runner",
-          "args": ["/opt/runners/task-runner-javascript/start.js"],
+          "args": ["/opt/runners/task-runner-javascript/dist/start.js"],
           "health-check-server-port": "5580",
+          "allowed-env": [
+            "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
+            "N8N_RUNNERS_TASK_TIMEOUT"
+          ],
           "env-overrides": {
             "NODE_FUNCTION_ALLOW_EXTERNAL": "ccxt"
           }
@@ -20,6 +24,10 @@ data:
           "workdir": "/home/runner",
           "args": ["/opt/runners/task-runner-python/start.py"],
           "health-check-server-port": "5681",
+          "allowed-env": [
+            "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
+            "N8N_RUNNERS_TASK_TIMEOUT"
+          ],
           "env-overrides": {
             "PYTHONPATH": "/opt/runners/task-runner-python"
           }
