@@ -9,6 +9,7 @@ data:
         {
           "runner-type": "javascript",
           "workdir": "/home/runner",
+          "args": ["/opt/runners/task-runner-javascript/start.js"],
           "health-check-server-port": "5580",
           "env-overrides": {
             "NODE_FUNCTION_ALLOW_EXTERNAL": "ccxt"
@@ -17,6 +18,7 @@ data:
         {
           "runner-type": "python",
           "workdir": "/home/runner",
+          "args": ["/opt/runners/task-runner-python/start.py"],
           "health-check-server-port": "5681",
           "env-overrides": {
             "PYTHONPATH": "/opt/runners/task-runner-python"
