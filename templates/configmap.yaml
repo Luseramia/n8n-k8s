@@ -9,7 +9,7 @@ data:
         {
           "runner-type": "javascript",
           "workdir": "/home/runner",
-          "args": ["/opt/runners/task-runner-javascript/dist/start.js"],
+          "args": ["/opt/runners/task-runner-javascript"],
           "health-check-server-port": "5580",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
@@ -22,7 +22,7 @@ data:
         {
           "runner-type": "python",
           "workdir": "/home/runner",
-          "args": ["/opt/runners/task-runner-python/start.py"],
+          "args": ["/opt/runners/task-runner-python"],
           "health-check-server-port": "5681",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
