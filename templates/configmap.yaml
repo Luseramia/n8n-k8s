@@ -9,8 +9,12 @@ data:
         {
           "runner-type": "javascript",
           "workdir": "/home/runner",
-          "command": "/opt/runners/task-runner-javascript",
-          "args": ["/opt/runners/task-runner-javascript"],
+          "command": "/usr/local/bin/node",
+          "args": [
+            "--disallow-code-generation-from-strings",
+            "--disable-proto=delete",
+            "/opt/runners/task-runner-javascript/dist/start.js"
+          ],
           "health-check-server-port": "5580",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
@@ -23,8 +27,8 @@ data:
         {
           "runner-type": "python",
           "workdir": "/home/runner",
-          "args": ["/opt/runners/task-runner-python"],
-           "command": "/opt/runners/task-runner-python",
+          "command": "/opt/runners/task-runner-python/.venv/bin/python",
+			    "args": ["-I", "-B", "-X", "disable_remote_debug", "-m", "src.main"],
           "health-check-server-port": "5681",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
