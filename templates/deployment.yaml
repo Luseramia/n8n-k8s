@@ -70,7 +70,7 @@ spec:
             runAsGroup: 1000
             fsGroup: 1000 
         - name: n8n-runner
-          image: "registry.registry.svc.cluster.local:5000/n8n-runner:34"
+          image: "registry.registry.svc.cluster.local:5000/n8n-runner:36"
           # command: ["sleep", "3600"]    
           imagePullPolicy: IfNotPresent
           env:
