@@ -28,7 +28,6 @@ data:
           "runner-type": "python",
           "workdir": "/home/runner",
           "command": "/opt/runners/task-runner-python/.venv/bin/python",
-			    "args": ["-I", "-B", "-X", "disable_remote_debug", "-m", "src.main"],
           "health-check-server-port": "5681",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
