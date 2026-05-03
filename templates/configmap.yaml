@@ -37,7 +37,7 @@ data:
           "env-overrides": {
             "PYTHONPATH": "/opt/runners/task-runner-python",
             "N8N_RUNNERS_STDLIB_ALLOW": "json,sys",             
-            "N8N_RUNNERS_EXTERNAL_ALLOW": "numpy,pandas,talib"     
+            "N8N_RUNNERS_EXTERNAL_ALLOW": "numpy,pandas,talib,ta-lib"     
           }
         }
       ]
