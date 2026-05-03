@@ -26,6 +26,7 @@ data:
         },
         {
           "runner-type": "python",
+          "PYTHONPATH": "/opt/runners/task-runner-python",
           "workdir": "/home/runner",
           "command": "/opt/runners/task-runner-python/.venv/bin/python",
           "health-check-server-port": "5681",
