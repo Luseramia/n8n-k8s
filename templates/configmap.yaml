@@ -35,7 +35,11 @@ data:
           "health-check-server-port": "5681",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
-            "N8N_RUNNERS_TASK_TIMEOUT"
+            "N8N_RUNNERS_TASK_TIMEOUT",
+            "N8N_RUNNERS_GRANT_TOKEN",
+            "N8N_RUNNERS_EXTERNAL_ALLOW",
+            "N8N_RUNNERS_STDLIB_ALLOW",
+            "PYTHONPATH"
           ],
           "env-overrides": {
             "PYTHONPATH": "/opt/runners/task-runner-python/.venv/lib/python3.13/site-packages",
