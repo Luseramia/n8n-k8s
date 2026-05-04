@@ -44,7 +44,7 @@ data:
           "env-overrides": {
             "PYTHONPATH": "/opt/runners/task-runner-python/.venv/lib/python3.13/site-packages",
             "N8N_RUNNERS_STDLIB_ALLOW": "json,sys",
-            "N8N_RUNNERS_EXTERNAL_ALLOW": "talib,PIL"
+            "N8N_RUNNERS_EXTERNAL_ALLOW": "pandas,talib,PIL"
           }
         }
       ]
