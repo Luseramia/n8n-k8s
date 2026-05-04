@@ -62,6 +62,10 @@ spec:
               value: "my-super-secret-token"
             - name: N8N_RUNNERS_BROKER_LISTEN_ADDRESS
               value: "0.0.0.0"
+            - name: N8N_RUNNERS_EXTERNAL_ALLOW
+              value: "talib,PIL"
+            - name: N8N_RUNNERS_STDLIB_ALLOW
+              value: "json,sys"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
@@ -82,12 +86,6 @@ spec:
               value: "15"
             - name: N8N_RUNNERS_TASK_TIMEOUT
               value: "300"
-            - name: N8N_RUNNERS_EXTERNAL_ALLOW
-              value: "talib,PIL"
-            - name: N8N_RUNNERS_STDLIB_ALLOW  
-              value: "json,sys"
-            - name: PYTHONPATH
-              value: "/opt/runners/task-runner-python/.venv/lib/python3.13/site-packages"
           volumeMounts:
             - name: runner-config
               mountPath: /etc/n8n-task-runners.json
