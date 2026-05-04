@@ -66,6 +66,10 @@ spec:
               value: "talib,PIL"
             - name: N8N_RUNNERS_STDLIB_ALLOW
               value: "json,sys"
+            - name: OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS
+              value: "false"
+            - name: N8N_RUNNERS_PYTHON_ENABLED  
+              value: "true"
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
