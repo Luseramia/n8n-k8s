@@ -28,7 +28,10 @@ data:
           "runner-type": "python",
           "PYTHONPATH": "/opt/runners/task-runner-python",
           "workdir": "/home/runner",
-           "command": "/opt/runners/task-runner-python/.venv/bin/python",
+          "command": "/opt/runners/task-runner-python/.venv/bin/python",
+          "args": [
+                "/opt/runners/task-runner-python/build/lib/src/main.py"
+              ],
           "health-check-server-port": "5681",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
@@ -37,7 +40,7 @@ data:
           "env-overrides": {
             "PYTHONPATH": "/opt/runners/task-runner-python",
             "N8N_RUNNERS_STDLIB_ALLOW": "json,sys",             
-            "N8N_RUNNERS_EXTERNAL_ALLOW": "talib,ta-lib,pillow"     
+            "N8N_RUNNERS_EXTERNAL_ALLOW": "talib,PIL"     
           }
         }
       ]
