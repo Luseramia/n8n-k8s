@@ -62,10 +62,10 @@ spec:
               value: "my-super-secret-token"
             - name: N8N_RUNNERS_BROKER_LISTEN_ADDRESS
               value: "0.0.0.0"
-            - name: N8N_RUNNERS_EXTERNAL_ALLOW
-              value: "talib,PIL"
-            - name: N8N_RUNNERS_STDLIB_ALLOW
-              value: "json,sys"
+            # - name: N8N_RUNNERS_EXTERNAL_ALLOW
+            #   value: "talib,PIL,numpy"
+            # - name: N8N_RUNNERS_STDLIB_ALLOW
+            #   value: "json,sys"
             - name: OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS
               value: "false"
             - name: N8N_RUNNERS_PYTHON_ENABLED  
