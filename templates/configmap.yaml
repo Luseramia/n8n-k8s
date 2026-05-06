@@ -9,13 +9,13 @@ data:
         {
           "runner-type": "javascript",
           "workdir": "/home/runner",
+          "health-check-server-port": "5580",
           "command": "/usr/local/bin/node",
           "args": [
             "--disallow-code-generation-from-strings",
             "--disable-proto=delete",
             "/opt/runners/task-runner-javascript/dist/start.js"
           ],
-          "health-check-server-port": "5580",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
             "N8N_RUNNERS_TASK_TIMEOUT"
@@ -28,15 +28,23 @@ data:
           "runner-type": "python",
           "workdir": "/home/runner",
           "command": "/opt/runners/task-runner-python/.venv/bin/python",
+          "args": [
+                "-m",
+                "src.main"
+          ],
           "health-check-server-port": "5681",
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
-            "N8N_RUNNERS_TASK_TIMEOUT"
+            "N8N_RUNNERS_TASK_TIMEOUT",
+            "N8N_RUNNERS_GRANT_TOKEN",
+            "N8N_RUNNERS_EXTERNAL_ALLOW",
+            "N8N_RUNNERS_STDLIB_ALLOW",
+            "PYTHONPATH"
           ],
           "env-overrides": {
-            "PYTHONPATH": "/opt/runners/task-runner-python",
-            "N8N_RUNNERS_STDLIB_ALLOW": "json,sys",             
-            "N8N_RUNNERS_EXTERNAL_ALLOW": "numpy,pandas,TA-Lib,talib"     
+            "PYTHONPATH": "/opt/runners/task-runner-python/.venv/lib/python3.13/site-packages",
+            "N8N_RUNNERS_STDLIB_ALLOW": "json,sys,builtins",
+            "N8N_RUNNERS_EXTERNAL_ALLOW": "numpy,pandas,talib,PIL"
           }
         }
       ]
