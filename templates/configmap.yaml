@@ -21,7 +21,7 @@ data:
             "N8N_RUNNERS_TASK_TIMEOUT"
           ],
           "env-overrides": {
-            "NODE_FUNCTION_ALLOW_BUILTIN": "http,https",         
+            "NODE_FUNCTION_ALLOW_BUILTIN": "http,https,url",         
             "NODE_FUNCTION_ALLOW_EXTERNAL": "ccxt"
           }
         },
