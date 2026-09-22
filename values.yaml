@@ -5,12 +5,34 @@ image:
   tag: 1.123.36
   pullPolicy: IfNotPresent
 
+runnerImage:
+  repository: registry.registry.svc.cluster.local:5000/n8n-runner
+  tag: "50"
+  pullPolicy: IfNotPresent
+
 service:
   type: LoadBalancer
   port: 443
 
-n8n:
-  encryptionKey: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
+# This Secret is deliberately not rendered by Helm. Jenkins creates it from
+# Vault before publishing a new runner image tag.
+runtimeSecret:
+  name: n8n-runtime
+
+database:
+  host: 192.168.1.44
+  port: "5432"
+  name: n8n_db
+  user: n8n
+
+aiTest:
+  gatewayUrl: http://gateway.ai-test-system.svc.cluster.local:8080
+  allowedRepositories: Luseramia/ai-orchestrator
+
+jenkinsSecretManager:
+  enabled: true
+  serviceAccountName: kaniko
+  serviceAccountNamespace: jenkins
 
 ingress:
   enabled: true

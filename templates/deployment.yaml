@@ -18,6 +18,8 @@ spec:
     metadata:
       labels:
         app: {{ include "n8n.name" . }}
+      annotations:
+        checksum/runner-config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
     spec:
       containers:
         - name: n8n
@@ -35,23 +37,31 @@ spec:
             - name: WEBHOOK_URL
               value: "https://{{ (index .Values.ingress.hosts 0).host }}/"
             - name: N8N_ENCRYPTION_KEY
-              value: "{{ .Values.n8n.encryptionKey }}"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: n8n-encryption-key
             - name: N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS
+              value: "false"
+            - name: N8N_BLOCK_ENV_ACCESS_IN_NODE
               value: "false"
             - name: DB_TYPE
               value: "postgresdb"
             - name: N8N_PROTOCOL
               value: "https"
             - name: DB_POSTGRESDB_HOST
-              value: "192.168.1.44"
+              value: {{ .Values.database.host | quote }}
             - name: DB_POSTGRESDB_PORT
-              value: "5432"
+              value: {{ .Values.database.port | quote }}
             - name: DB_POSTGRESDB_DATABASE
-              value: "n8n_db"
+              value: {{ .Values.database.name | quote }}
             - name: DB_POSTGRESDB_USER
-              value: "n8n"
+              value: {{ .Values.database.user | quote }}
             - name: DB_POSTGRESDB_PASSWORD
-              value: "4aONK7FNR0HNKZI1FH5znM12gz5iCxQA"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: db-password
             - name:  N8N_PAYLOAD_SIZE_MAX
               value: "100"
             - name: N8N_RUNNERS_ENABLED
@@ -59,7 +69,10 @@ spec:
             - name: N8N_RUNNERS_MODE
               value: "external"
             - name: N8N_RUNNERS_AUTH_TOKEN
-              value: "my-super-secret-token"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: runners-auth-token
             - name: N8N_RUNNERS_BROKER_LISTEN_ADDRESS
               value: "0.0.0.0"
             # - name: N8N_RUNNERS_EXTERNAL_ALLOW
@@ -72,6 +85,40 @@ spec:
               value: "true"
             - name: N8N_NATIVE_PYTHON_RUNNER
               value: "true"
+            - name: AI_TEST_GATEWAY_URL
+              value: {{ .Values.aiTest.gatewayUrl | quote }}
+            - name: AI_TEST_GATEWAY_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: ai-test-gateway-token
+            - name: AI_TEST_PLAN_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: ai-test-plan-webhook-secret
+            - name: AI_TEST_COMPLETION_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: ai-test-completion-webhook-secret
+            - name: GITHUB_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: github-webhook-secret
+            - name: AI_TEST_ALLOWED_REPOSITORIES
+              value: {{ .Values.aiTest.allowedRepositories | quote }}
+            - name: AI_TEST_NOTIFICATION_URL
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: ai-test-notification-url
+            - name: AI_TEST_NOTIFICATION_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: ai-test-notification-token
           volumeMounts:
             - name: n8n-data
               mountPath: /home/node/.n8n
@@ -80,18 +127,38 @@ spec:
             runAsGroup: 1000
             fsGroup: 1000 
         - name: n8n-runner
-          image: "registry.registry.svc.cluster.local:5000/n8n-runner:50"
+          image: "{{ .Values.runnerImage.repository }}:{{ .Values.runnerImage.tag }}"
           # command: ["sleep", "3600"]    
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: {{ .Values.runnerImage.pullPolicy }}
           env:
             - name: N8N_RUNNERS_AUTH_TOKEN
-              value: "my-super-secret-token"
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: runners-auth-token
             - name: N8N_RUNNERS_TASK_BROKER_URI
               value: "http://127.0.0.1:5679"
             - name: N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT
               value: "15"
             - name: N8N_RUNNERS_TASK_TIMEOUT
               value: "300"
+            - name: AI_TEST_PLAN_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: ai-test-plan-webhook-secret
+            - name: AI_TEST_COMPLETION_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: ai-test-completion-webhook-secret
+            - name: GITHUB_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.runtimeSecret.name | quote }}
+                  key: github-webhook-secret
+            - name: AI_TEST_ALLOWED_REPOSITORIES
+              value: {{ .Values.aiTest.allowedRepositories | quote }}
           volumeMounts:
             - name: runner-config
               mountPath: /etc/n8n-task-runners.json

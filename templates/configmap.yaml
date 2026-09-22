@@ -18,7 +18,11 @@ data:
           ],
           "allowed-env": [
             "N8N_RUNNERS_AUTO_SHUTDOWN_TIMEOUT",
-            "N8N_RUNNERS_TASK_TIMEOUT"
+            "N8N_RUNNERS_TASK_TIMEOUT",
+            "AI_TEST_PLAN_WEBHOOK_SECRET",
+            "AI_TEST_COMPLETION_WEBHOOK_SECRET",
+            "GITHUB_WEBHOOK_SECRET",
+            "AI_TEST_ALLOWED_REPOSITORIES"
           ],
           "env-overrides": {
             "NODE_FUNCTION_ALLOW_BUILTIN": "http,https,url,crypto",         
