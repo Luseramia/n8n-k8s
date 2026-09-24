@@ -145,7 +145,7 @@ SSHCFG
             cd /ci-workspace/source
             helm lint .
             helm template n8n . --namespace "${KUBERNETES_NAMESPACE}" > /ci-workspace/rendered.yaml
-            grep -F 'name: n8n-runtime' /ci-workspace/rendered.yaml >/dev/null
+            grep -F 'name: "n8n-runtime"' /ci-workspace/rendered.yaml >/dev/null
             grep -F 'key: ai-test-plan-webhook-secret' /ci-workspace/rendered.yaml >/dev/null
             grep -F 'kind: Role' /ci-workspace/rendered.yaml >/dev/null
           '''
