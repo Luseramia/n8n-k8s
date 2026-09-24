@@ -52,6 +52,11 @@ The chart creates only the namespaced Role and RoleBinding that allow the
 `jenkins/kaniko` ServiceAccount to manage that exact Secret name. It does not
 create the Secret itself.
 
+The custom runner image is built from the exact n8n version in
+`values.yaml:image.tag`. n8n requires the `n8nio/n8n` and `n8nio/runners`
+versions to match; do not change the runner base image to `latest` or
+`nightly`.
+
 ## Migration order
 
 1. Put the **current** n8n encryption key in Vault. Do not generate a new one:

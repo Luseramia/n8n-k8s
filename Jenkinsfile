@@ -222,10 +222,19 @@ SSHCFG
         container('kaniko') {
           sh '''
             set -eu
+            n8n_version="$(
+              awk '
+                /^image:/ { in_image = 1; next }
+                in_image && /^[^[:space:]]/ { exit }
+                in_image && /^  tag:/ { print $2; exit }
+              ' /ci-workspace/source/values.yaml | tr -d '"'
+            )"
+            test -n "${n8n_version}"
             destination="${REGISTRY}/${IMAGE_NAME}:${IMAGE_TAG}"
             /kaniko/executor \
               --context=/ci-workspace/source \
               --dockerfile=/ci-workspace/source/Dockerfile \
+              --build-arg=N8N_VERSION="${n8n_version}" \
               --destination="${destination}" \
               --cache=true \
               --cache-repo="${REGISTRY}/kaniko-cache/${IMAGE_NAME}" \
