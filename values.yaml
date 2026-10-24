@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: n8nio/n8n
-  tag: 1.123.36
+  tag: 1.123.87
   pullPolicy: IfNotPresent
 
 runnerImage:
