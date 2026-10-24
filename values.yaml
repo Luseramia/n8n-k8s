@@ -7,7 +7,7 @@ image:
 
 runnerImage:
   repository: registry.registry.svc.cluster.local:5000/n8n-runner
-  tag: 56
+  tag: 57
   pullPolicy: IfNotPresent
 
 service:
